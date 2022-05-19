@@ -27,8 +27,8 @@ class DisplayAll extends React.Component {
     this.setState({
       diceOne: Math.floor(Math.random()*(7-1)+1),
       diceTwo: Math.floor(Math.random()*(7-1)+1),
-    })
-    this.checkDouble()
+    }, ()=>{this.checkDouble()})
+    // this.checkDouble()
     }
     checkDouble=()=> {
     (this.state.diceOne === this.state.diceTwo)?
