@@ -15,7 +15,6 @@ class PlayersStats extends React.Component {
         <div>{this.props.statsObj.player2.score}</div>
         <div>dice one: {this.props.statsObj.diceOne}</div>
         <div>dice two :{this.props.statsObj.diceTwo}</div>
-        <div>{this.props.statsObj.isDouble && "double"}</div>
       </div>
     ) 
   }

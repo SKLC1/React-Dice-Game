@@ -15,8 +15,9 @@ class DisplayAll extends React.Component {
         name: 'player2',
         score: 0,
       },
-      diceOne: 6,
-      diceTwo: 6,
+      curPlayer: 'player1',
+      diceOne: 0,
+      diceTwo: 0,
       isDouble: true,
     }
   }
@@ -25,18 +26,25 @@ class DisplayAll extends React.Component {
       diceOne: Math.floor(Math.random()*(7-1)+1),
       diceTwo: Math.floor(Math.random()*(7-1)+1),
     })
-    if (this.state.diceOne === this.state.diceTwo) {
-      this.setState({ isDouble: true })
-    } else (
-      this.setState({ isDouble: false })
-    )
+    this.checkDouble()
   }
-
+  checkDouble=()=> {
+    (this.state.diceOne === this.state.diceTwo && this.state.diceOne)?
+      this.setState({ isDouble: true }):
+      this.setState({ isDouble: false });
+      this.addToScore()
+    }
+    addToScore=()=> {
+      this.setState({ player1: 
+        { score: this.state.player1.score + this.state.diceOne + this.state.diceTwo}})
+    }
+  // 
   render() {
     return(
       <div>
         <PlayersStats statsObj={this.state}/>
         <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
+        <div>{this.state.isDouble && 'double'}</div>
       </div>
     )
   }
