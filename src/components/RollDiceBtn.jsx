@@ -3,7 +3,7 @@
 function RollDiceBtn (props){
   return(
     <div>
-      <button onClick={()=>props.rollFunc()}>Test</button>
+      <button onClick={()=>props.rollFunc()}>Roll Dice</button>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import React from "react"
 function Hold (props) {
   return(
     <div>
-      <button onClick={()=>props.holdFunc()}>test hold</button>
+      <button onClick={()=>props.holdFunc()}>Hold</button>
     </div>
   )
 }

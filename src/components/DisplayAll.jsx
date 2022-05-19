@@ -2,6 +2,8 @@ import React from "react"
 import RollDiceBtn from "./RollDiceBtn"
 import PlayersStats from "./PlayersStats"
 import Hold from "./Hold"
+import ResetBtn from "./ResetBtn"
+
 
 class DisplayAll extends React.Component {
   constructor() {
@@ -18,21 +20,20 @@ class DisplayAll extends React.Component {
       curPlayer: this.player1,
       diceOne: 0,
       diceTwo: 0,
-      isDouble: false,
     }
   }
-  rollDice =()=> {
+  // note roll will not work at start until double because no default curPlayer
+    rollDice =()=> {
     this.setState({
       diceOne: Math.floor(Math.random()*(7-1)+1),
       diceTwo: Math.floor(Math.random()*(7-1)+1),
     })
     this.checkDouble()
-  }
-  checkDouble=()=> {
-    (this.state.diceOne === this.state.diceTwo && this.state.diceOne)?
+    }
+    checkDouble=()=> {
+    (this.state.diceOne === this.state.diceTwo)?
       this.doubleCase(this.state.curPlayer):
       this.notDouble();
-
     }
     addToScore=(cur)=> {
       this.setState({ cur: 
@@ -48,15 +49,17 @@ class DisplayAll extends React.Component {
       }
       console.log(this.state.curPlayer)
     }
-    doubleCase=(cur)=> {
-      this.setState({cur:
-         {score: 0}
-        })
+     doubleCase=(cur)=> {
+      this.setScoreToZero(cur)
       this.invokeHold()
     }
     notDouble=()=>{
       this.addToScore(this.state.curPlayer)
     }
+    setScoreToZero=(cur)=>{
+      this.setState({cur: cur.score = 0})
+    }
+
   // 
   render() {
     return(
@@ -64,6 +67,7 @@ class DisplayAll extends React.Component {
         <PlayersStats statsObj={this.state}/>
         <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
         <Hold data={this.state} holdFunc={this.invokeHold}/>
+        <ResetBtn/>
         <div>{this.state.isDouble && 'double'}</div>
       </div>
     )
