@@ -67,9 +67,9 @@ class DisplayAll extends React.Component {
     }
     // win\lose case
     didWin=(cur)=>{
-      (cur.score === 17)?
+      (cur.score === 55)?
       this.winCase(cur):
-      (cur.score > 17)?this.loseCase(cur):console.log('n');
+      (cur.score > 55)?this.loseCase(cur):console.log('n');
     }
     winCase=(cur)=>{
       console.log(`${cur.name} win`);
@@ -103,9 +103,11 @@ class DisplayAll extends React.Component {
       return(
         <div>
          <PlayersStats statsObj={this.state}/>
-         <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
-         <Hold data={this.state} holdFunc={this.invokeHold}/>
-         <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+         <div className="btn-cont">
+           <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
+           <Hold data={this.state} holdFunc={this.invokeHold}/>
+           <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+         </div>
          <div>{this.state.isDouble && 'double'}</div>
         </div>
       )
