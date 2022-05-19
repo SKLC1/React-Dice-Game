@@ -20,6 +20,8 @@ class DisplayAll extends React.Component {
       curPlayer: null, // find a way to give curPlayer default
       diceOne: 0,
       diceTwo: 0,
+      isLost: false, // false
+      isWin: false,
     }
   }
   // note roll will not work at start until double because no default curPlayer
@@ -54,9 +56,23 @@ class DisplayAll extends React.Component {
     }
     notDouble=()=>{
       this.addToScore(this.state.curPlayer)
+      this.didWin(this.state.curPlayer)
     }
     setScoreToZero=(cur)=>{
       this.setState({cur: cur.score = 0})
+    }
+    // win\lose case
+    didWin=(cur)=>{
+      (cur.score === 100)?
+      this.winCase(cur):
+      (cur.score > 100)?this.loseCase(cur):console.log('n');
+    }
+    winCase=()=>{
+      console.log('win');
+    }
+    loseCase=(cur)=>{
+      console.log(`${cur.name} lost`);
+      this.setState({isLost: true})
     }
     // reset
     resetGame=()=> {
@@ -72,19 +88,37 @@ class DisplayAll extends React.Component {
           curPlayer: null, // find a way to give curPlayer default
           diceOne: 0,
           diceTwo: 0,
-      })
+          isLost: false,
+          isWin: false,
+      }, ()=>{this.invokeHold()})
     }
   // 
   render() {
-    return(
+    if (!this.state.isLost) { 
+      return(
+        <div>
+         <PlayersStats statsObj={this.state}/>
+         <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
+         <Hold data={this.state} holdFunc={this.invokeHold}/>
+         <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+         <div>{this.state.isDouble && 'double'}</div>
+        </div>
+      )
+    } else if(this.state.isLost){
+      return(
+        <div>
+          <div>{`${this.state.curPlayer} Won!!`} </div>
+          <div>Would you Like to Play Again?</div>
+          <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+        </div>
+      )
+    } else if(this.state.isWin){
       <div>
-        <PlayersStats statsObj={this.state}/>
-        <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
-        <Hold data={this.state} holdFunc={this.invokeHold}/>
-        <ResetBtn data={this.state} resetFunc={this.resetGame}/>
-        <div>{this.state.isDouble && 'double'}</div>
-      </div>
-    )
+      <div>{`${this.state.curPlayer} Won!!`} </div>
+      <div>Would you Like to Play Again?</div>
+      <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+    </div>
+    }
   }
 }
 
