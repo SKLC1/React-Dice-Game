@@ -17,7 +17,7 @@ class DisplayAll extends React.Component {
         name: 'player2',
         score: 0,
       },
-      curPlayer: this.player1,
+      curPlayer: null, // find a way to give curPlayer default
       diceOne: 0,
       diceTwo: 0,
     }
@@ -27,8 +27,7 @@ class DisplayAll extends React.Component {
     this.setState({
       diceOne: Math.floor(Math.random()*(7-1)+1),
       diceTwo: Math.floor(Math.random()*(7-1)+1),
-    }, ()=>{this.checkDouble()})
-    // this.checkDouble()
+    }, ()=>{this.checkDouble()}) // arrow func is used to callback in an async manner
     }
     checkDouble=()=> {
     (this.state.diceOne === this.state.diceTwo)?
@@ -59,7 +58,22 @@ class DisplayAll extends React.Component {
     setScoreToZero=(cur)=>{
       this.setState({cur: cur.score = 0})
     }
-
+    // reset
+    resetGame=()=> {
+      this.setState({
+          player1: {
+            name: 'player1',
+            score: 0,
+          },
+          player2: {
+            name: 'player2',
+            score: 0,
+          },
+          curPlayer: null, // find a way to give curPlayer default
+          diceOne: 0,
+          diceTwo: 0,
+      })
+    }
   // 
   render() {
     return(
@@ -67,7 +81,7 @@ class DisplayAll extends React.Component {
         <PlayersStats statsObj={this.state}/>
         <RollDiceBtn data={this.state} rollFunc={this.rollDice} />
         <Hold data={this.state} holdFunc={this.invokeHold}/>
-        <ResetBtn/>
+        <ResetBtn data={this.state} resetFunc={this.resetGame}/>
         <div>{this.state.isDouble && 'double'}</div>
       </div>
     )
