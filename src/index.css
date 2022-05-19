@@ -39,3 +39,29 @@ code {
   justify-content: center;
   width: 100%;
 }
+
+/* dice */
+.cube{
+  width: 3rem;
+  height: 3rem;
+}
+.dice1{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -18px -16px;
+}
+.dice2{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -132px -16px;
+}
+.dice3{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -248px -16px;
+}
+.dice4{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -16px -148px;
+}
+.dice5{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -132px -148px;
+
+}
+.dice6{
+  background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -248px -148px;
+
+}

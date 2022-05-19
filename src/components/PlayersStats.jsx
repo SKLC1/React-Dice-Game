@@ -5,7 +5,14 @@ class PlayersStats extends React.Component {
   constructor() {
     super()
   }
-  
+  displayDice(res) {
+    const diceArr = [1,2,3,4,5,6]
+    for (let i = 0; i < diceArr.length; i++) {
+      if (res === diceArr[i]) {
+        return <div className={`cube dice${diceArr[i]}`}></div>
+      }      
+    }
+  }
   render() {
     return(
       <div>
@@ -20,8 +27,8 @@ class PlayersStats extends React.Component {
           </div>
         </div>
         <div className="dice-cont">
-         <div>dice one: {this.props.statsObj.diceOne}</div>
-         <div>dice two :{this.props.statsObj.diceTwo}</div>
+         <div>dice one: {this.displayDice(this.props.statsObj.diceOne)}</div>
+         <div>dice two: {this.displayDice(this.props.statsObj.diceTwo)}</div>
         </div>
       </div>
     ) 
