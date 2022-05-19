@@ -18,6 +18,7 @@ class DisplayAll extends React.Component {
         score: 0,
       },
       curPlayer: null, // find a way to give curPlayer default
+      prevPlayer: null, // find a way to give curPlayer default
       diceOne: 0,
       diceTwo: 0,
       isLost: false, // false
@@ -40,13 +41,16 @@ class DisplayAll extends React.Component {
       this.setState({ cur: 
         { score: cur.score += this.state.diceOne + this.state.diceTwo}
       })
+      console.log(cur.score);
     }
     // hold
     invokeHold=()=>{
       if (this.state.curPlayer === this.state.player1) {
         this.setState({curPlayer: this.state.player2})
+        this.setState({prevPlayer: this.state.player1})
       } else {
         this.setState({curPlayer: this.state.player1})
+        this.setState({prevPlayer: this.state.player2})
       }
       console.log(this.state.curPlayer)
     }
@@ -63,12 +67,13 @@ class DisplayAll extends React.Component {
     }
     // win\lose case
     didWin=(cur)=>{
-      (cur.score === 100)?
+      (cur.score === 17)?
       this.winCase(cur):
-      (cur.score > 100)?this.loseCase(cur):console.log('n');
+      (cur.score > 17)?this.loseCase(cur):console.log('n');
     }
-    winCase=()=>{
-      console.log('win');
+    winCase=(cur)=>{
+      console.log(`${cur.name} win`);
+      this.setState({isWin: true})
     }
     loseCase=(cur)=>{
       console.log(`${cur.name} lost`);
@@ -94,7 +99,7 @@ class DisplayAll extends React.Component {
     }
   // 
   render() {
-    if (!this.state.isLost) { 
+    if (!this.state.isLost && !this.state.isWin) { 
       return(
         <div>
          <PlayersStats statsObj={this.state}/>
@@ -107,17 +112,19 @@ class DisplayAll extends React.Component {
     } else if(this.state.isLost){
       return(
         <div>
-          <div>{`${this.state.curPlayer} Won!!`} </div>
+          <div>{`${this.state.prevPlayer.name} Won!!`} </div>
           <div>Would you Like to Play Again?</div>
           <ResetBtn data={this.state} resetFunc={this.resetGame}/>
         </div>
       )
     } else if(this.state.isWin){
+      return(
       <div>
-      <div>{`${this.state.curPlayer} Won!!`} </div>
-      <div>Would you Like to Play Again?</div>
-      <ResetBtn data={this.state} resetFunc={this.resetGame}/>
-    </div>
+        <div>{`${this.state.curPlayer.name} Won!!`} </div>
+        <div>Would you Like to Play Again?</div>
+        <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+      </div>
+      )
     }
   }
 }
