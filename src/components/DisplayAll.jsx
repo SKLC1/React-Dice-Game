@@ -18,7 +18,7 @@ class DisplayAll extends React.Component {
       curPlayer: this.player1,
       diceOne: 0,
       diceTwo: 0,
-      isDouble: true,
+      isDouble: false,
     }
   }
   rollDice =()=> {
@@ -45,11 +45,13 @@ class DisplayAll extends React.Component {
         this.setState({curPlayer: this.state.player2})
       } else {
         this.setState({curPlayer: this.state.player1})
-      console.log(this.state.curPlayer)
       }
+      console.log(this.state.curPlayer)
     }
-    doubleCase=(cur)=>{
-      this.setState({cur: {score: 0}})
+    doubleCase=(cur)=> {
+      this.setState({cur:
+         {score: 0}
+        })
       this.invokeHold()
     }
     notDouble=()=>{
