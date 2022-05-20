@@ -15,16 +15,21 @@ class PlayersStats extends React.Component {
       }      
     }
   }
+  highlightCur=(state, localCur)=> {
+    if (state.curPlayer === localCur) {
+      return 'highlightCur'
+    }
+  }
   render() {
     return(
       <div>
         <div className="players">
           <div className="player-cont">
-           <div>Player 1</div>
+           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player1)}>Player 1</div>
            <div>{this.props.statsObj.player1.score}</div>
           </div>
           <div className="player-cont">
-           <div>Player 2</div>
+           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player2)}>Player 2</div>
            <div>{this.props.statsObj.player2.score}</div>
           </div>
         </div>

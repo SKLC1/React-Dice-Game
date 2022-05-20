@@ -54,7 +54,6 @@ class DisplayAll extends React.Component {
       } else {
         this.setState({curPlayer: this.state.player1,prevPlayer: this.state.player2})
       }
-      console.log(this.state.curPlayer)
     }
      doubleCase=(cur)=> {
       this.setScoreToZero(cur)
