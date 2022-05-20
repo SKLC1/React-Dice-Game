@@ -27,8 +27,10 @@ class DisplayAll extends React.Component {
   }
   // note roll will not work at start until double because no default curPlayer
     rollDice =()=> {
-      this.invokeHold()
-      this.invokeHold()
+      if(this.state.curPlayer === null){
+        this.invokeHold()
+        this.invokeHold()
+      }
     this.setState({
       diceOne: Math.floor(Math.random()*(7-1)+1),
       diceTwo: Math.floor(Math.random()*(7-1)+1),
