@@ -5,11 +5,13 @@ class PlayersStats extends React.Component {
   constructor() {
     super()
   }
+
   displayDice(res) {
     const diceArr = [1,2,3,4,5,6]
+    // display correct dice
     for (let i = 0; i < diceArr.length; i++) {
       if (res === diceArr[i]) {
-        return <div className={`cube dice${diceArr[i]}`}></div>
+          return <div className={`cube dice${diceArr[i]}`}></div>
       }      
     }
   }

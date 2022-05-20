@@ -19,8 +19,8 @@ class DisplayAll extends React.Component {
       },
       curPlayer: null, // find a way to give curPlayer default
       prevPlayer: null, // find a way to give curPlayer default
-      diceOne: 0,
-      diceTwo: 0,
+      diceOne: 1,
+      diceTwo: 1,
       isLost: false, // false
       isWin: false,
     }
@@ -91,8 +91,8 @@ class DisplayAll extends React.Component {
             score: 0,
           },
           curPlayer: null, // find a way to give curPlayer default
-          diceOne: 0,
-          diceTwo: 0,
+          diceOne: 1,
+          diceTwo: 1,
           isLost: false,
           isWin: false,
       }, ()=>{this.invokeHold()})

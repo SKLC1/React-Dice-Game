@@ -39,6 +39,14 @@ code {
   justify-content: center;
   width: 100%;
 }
+.btn-cont button {
+  color: #fff;
+  margin: 1rem;
+  padding: 0 0.8rem ;
+  background-color: rgb(104, 149, 115);
+  border: none;
+  border-radius: 25px;
+}
 
 /* dice */
 .cube{
