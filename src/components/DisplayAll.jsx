@@ -24,6 +24,7 @@ class DisplayAll extends React.Component {
       isLost: false, // false
       isWin: false,
       didRoll: true,
+      rollMsg: false,
     }
   }
   // note roll will not work at start until double because no default curPlayer
@@ -34,6 +35,7 @@ class DisplayAll extends React.Component {
       }
       this.setState({
         didRoll: true,
+        rollMsg: false,
         diceOne: Math.floor(Math.random()*(7-1)+1),
         diceTwo: Math.floor(Math.random()*(7-1)+1),
       }, ()=>{this.checkDouble()}) // arrow func is used to callback in an async manner
@@ -59,7 +61,7 @@ class DisplayAll extends React.Component {
         }
         this.setState({didRoll: false})
       } else {
-        this.displayRollFirstMsg()
+        this.setRollMsg()
       }
     }
      doubleCase=(cur)=> {
@@ -113,6 +115,9 @@ class DisplayAll extends React.Component {
           </div>
         )
     }
+    setRollMsg(){
+      this.setState({rollMsg: true})
+    }
   ///////////////////////////////////////////////////////////////////
   render() {
     if (!this.state.isLost && !this.state.isWin) { 
@@ -125,7 +130,7 @@ class DisplayAll extends React.Component {
            <ResetBtn data={this.state} resetFunc={this.resetGame}/>
          </div>
            <div className="rollFirst-cont">
-             {!this.state.didRoll?this.displayRollFirstMsg():null}
+             {!this.state.didRoll&&this.state.rollMsg?this.displayRollFirstMsg():null}
            </div>
          <div>{this.state.isDouble && 'double'}</div>
         </div>
