@@ -18,6 +18,9 @@ code {
     monospace;
 }
 *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-size: 2rem;
 }
 .player-cont{
@@ -48,7 +51,7 @@ code {
   color: #fff;
   margin: 1rem;
   padding: 0 0.8rem ;
-  background-color: rgb(104, 149, 115);
+  background: rgb(111,30,153);
   border: none;
   border-radius: 25px;
 }
@@ -99,4 +102,14 @@ code {
 .dice6{
   background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -248px -148px;
 
+}
+
+@media (max-width: 1200px) {
+  .btn-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
 }
