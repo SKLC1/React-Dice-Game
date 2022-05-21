@@ -24,6 +24,7 @@ code {
   font-size: 2rem;
 }
 .player-cont{
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,11 +58,11 @@ code {
 }
 .highlightCur{
   border-radius: 20px;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.5s;
 }
 .shadowMe{
   opacity: 0.5;
