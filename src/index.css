@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +7,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+  background: rgb(119,25,87);
+  background: linear-gradient(90deg, rgba(119,25,87,1) 0%, rgba(143,25,207,1) 100%);
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
 }
 
 code {
@@ -48,7 +53,19 @@ code {
   border-radius: 25px;
 }
 .highlightCur{
-  border: 5px solid blue;
+  border-radius: 20px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.shadowMe{
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .rollFirst-msg{
   font-size: 1rem;
@@ -61,6 +78,7 @@ code {
 .cube{
   width: 3rem;
   height: 3rem;
+  margin: 1rem;
 }
 .dice1{
   background: url('./vector-illustration-white-16-dices-260nw-1477976066.webp') no-repeat -18px -16px;

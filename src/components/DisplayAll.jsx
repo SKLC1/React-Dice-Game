@@ -5,6 +5,7 @@ import Hold from "./Hold"
 import ResetBtn from "./ResetBtn"
 
 
+
 class DisplayAll extends React.Component {
   constructor() {
     super()
@@ -12,10 +13,12 @@ class DisplayAll extends React.Component {
       player1: {
         name: 'player1',
         score: 0,
+        tempScore: 0,
       },
       player2: {
         name: 'player2',
         score: 0,
+        tempScore: 0,
       },
       curPlayer: null, 
       prevPlayer: null, 
@@ -27,7 +30,6 @@ class DisplayAll extends React.Component {
       rollMsg: false,
     }
   }
-  // note roll will not work at start until double because no default curPlayer
     rollDice =()=> {
       if(this.state.curPlayer === null){
         this.invokeHold()
@@ -38,7 +40,7 @@ class DisplayAll extends React.Component {
         rollMsg: false,
         diceOne: Math.floor(Math.random()*(7-1)+1),
         diceTwo: Math.floor(Math.random()*(7-1)+1),
-      }, ()=>{this.checkDouble()}) // arrow func is used to callback in an async manner
+      }, ()=>{this.checkDouble()}) 
     }
     checkDouble=()=> {
     (this.state.diceOne === this.state.diceTwo)?
@@ -92,20 +94,24 @@ class DisplayAll extends React.Component {
     // reset
     resetGame=()=> {
       this.setState({
-          player1: {
-            name: 'player1',
-            score: 0,
-          },
-          player2: {
-            name: 'player2',
-            score: 0,
-          },
-          curPlayer: null, // find a way to give curPlayer default
-          diceOne: 1,
-          diceTwo: 1,
-          isLost: false,
-          isWin: false,
-          didRoll: true,
+        player1: {
+          name: 'player1',
+          score: 0,
+          total: 0,
+        },
+        player2: {
+          name: 'player2',
+          score: 0,
+          total: 0,
+        },
+        curPlayer: null, 
+        prevPlayer: null, 
+        diceOne: 1,
+        diceTwo: 1,
+        isLost: false, // false
+        isWin: false,
+        didRoll: true,
+        rollMsg: false,
       }, ()=>{this.invokeHold()})
     }
     displayRollFirstMsg(){
@@ -118,6 +124,7 @@ class DisplayAll extends React.Component {
     setRollMsg(){
       this.setState({rollMsg: true})
     }
+
   ///////////////////////////////////////////////////////////////////
   render() {
     if (!this.state.isLost && !this.state.isWin) { 

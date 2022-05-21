@@ -18,6 +18,8 @@ class PlayersStats extends React.Component {
   highlightCur=(state, localCur)=> {
     if (state.curPlayer === localCur) {
       return 'highlightCur'
+    } else {
+      return 'shadowMe'
     }
   }
   render() {
@@ -25,17 +27,21 @@ class PlayersStats extends React.Component {
       <div>
         <div className="players">
           <div className="player-cont">
-           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player1)}>Player 1</div>
-           <div>{this.props.statsObj.player1.score}</div>
+           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player1)}>Player 1
+            <div>{this.props.statsObj.player1.score}</div>
+            <div>{this.props.statsObj.player1.tempScore}</div>
+           </div>
           </div>
           <div className="player-cont">
-           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player2)}>Player 2</div>
-           <div>{this.props.statsObj.player2.score}</div>
+           <div className={this.highlightCur(this.props.statsObj,this.props.statsObj.player2)}>Player 2
+            <div>{this.props.statsObj.player2.score}</div>
+            <div>{this.props.statsObj.player2.tempScore}</div>
+           </div>
           </div>
         </div>
         <div className="dice-cont">
-         <div>dice one: {this.displayDice(this.props.statsObj.diceOne)}</div>
-         <div>dice two: {this.displayDice(this.props.statsObj.diceTwo)}</div>
+         <div>{this.displayDice(this.props.statsObj.diceOne)}</div>
+         <div>{this.displayDice(this.props.statsObj.diceTwo)}</div>
         </div>
       </div>
     ) 
