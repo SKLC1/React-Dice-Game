@@ -13,13 +13,13 @@ class DisplayAll extends React.Component {
       player1: {
         name: 'player1',
         score: 0,
-        tempScore: 0,
       },
+      totalScoreP1: 0,
       player2: {
         name: 'player2',
         score: 0,
-        tempScore: 0,
       },
+      totalScoreP2: 0,
       curPlayer: null, 
       prevPlayer: null, 
       diceOne: 1,
@@ -57,9 +57,13 @@ class DisplayAll extends React.Component {
     invokeHold=()=>{
       if(this.state.didRoll === true){
         if (this.state.curPlayer === this.state.player1) {
-          this.setState({curPlayer: this.state.player2, prevPlayer: this.state.player1})
+          this.setState({curPlayer: this.state.player2, 
+            prevPlayer: this.state.player1, 
+            totalScoreP1: this.state.totalScoreP1 + this.state.curPlayer.score})
         } else {
-          this.setState({curPlayer: this.state.player1, prevPlayer: this.state.player2})
+          this.setState({curPlayer: this.state.player1,
+             prevPlayer: this.state.player2,
+             totalScoreP2: this.state.totalScoreP2 + this.state.player2.score,}) // hard coded because weird behavior error.
         }
         this.setState({didRoll: false})
       } else {
