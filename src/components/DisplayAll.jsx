@@ -83,9 +83,11 @@ class DisplayAll extends React.Component {
     }
     // win\lose case
     didWin=(cur)=>{
-      (cur.score === 100)?
-      this.winCase(cur):
-      (cur.score > 100)?this.loseCase(cur):console.log('n');
+      if (this.state.totalScoreP1 === 100 || this.state.totalScoreP2 > 100) {
+        this.winCase(this.state.player1)
+      } else if(this.state.totalScoreP2 === 100 || this.state.totalScoreP1 > 100) {
+        this.winCase(this.state.player2)
+      }
     }
     winCase=(cur)=>{
       console.log(`${cur.name} win`);
@@ -98,25 +100,25 @@ class DisplayAll extends React.Component {
     // reset
     resetGame=()=> {
       this.setState({
-        player1: {
-          name: 'player1',
-          score: 0,
-          total: 0,
-        },
-        player2: {
-          name: 'player2',
-          score: 0,
-          total: 0,
-        },
-        curPlayer: null, 
-        prevPlayer: null, 
-        diceOne: 1,
-        diceTwo: 1,
-        isLost: false, // false
-        isWin: false,
-        didRoll: true,
-        rollMsg: false,
-      }, ()=>{this.invokeHold()})
+          player1: {
+            name: 'player1',
+            score: 0,
+          },
+          totalScoreP1: 0,
+          player2: {
+            name: 'player2',
+            score: 0,
+          },
+          totalScoreP2: 0,
+          curPlayer: null, 
+          prevPlayer: null, 
+          diceOne: 1,
+          diceTwo: 1,
+          isLost: false, // false
+          isWin: false,
+          didRoll: true,
+          rollMsg: false,
+        }, ()=>{this.invokeHold()})
     }
     displayRollFirstMsg(){
         return(
