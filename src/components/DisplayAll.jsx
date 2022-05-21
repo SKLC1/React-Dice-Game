@@ -23,6 +23,7 @@ class DisplayAll extends React.Component {
       diceTwo: 1,
       isLost: false, // false
       isWin: false,
+      didRoll: true,
     }
   }
   // note roll will not work at start until double because no default curPlayer
@@ -31,10 +32,11 @@ class DisplayAll extends React.Component {
         this.invokeHold()
         this.invokeHold()
       }
-    this.setState({
-      diceOne: Math.floor(Math.random()*(7-1)+1),
-      diceTwo: Math.floor(Math.random()*(7-1)+1),
-    }, ()=>{this.checkDouble()}) // arrow func is used to callback in an async manner
+      this.setState({
+        didRoll: true,
+        diceOne: Math.floor(Math.random()*(7-1)+1),
+        diceTwo: Math.floor(Math.random()*(7-1)+1),
+      }, ()=>{this.checkDouble()}) // arrow func is used to callback in an async manner
     }
     checkDouble=()=> {
     (this.state.diceOne === this.state.diceTwo)?
@@ -49,10 +51,15 @@ class DisplayAll extends React.Component {
     }
     // hold
     invokeHold=()=>{
-      if (this.state.curPlayer === this.state.player1) {
-        this.setState({curPlayer: this.state.player2,prevPlayer: this.state.player1})
+      if(this.state.didRoll === true){
+        if (this.state.curPlayer === this.state.player1) {
+          this.setState({curPlayer: this.state.player2, prevPlayer: this.state.player1})
+        } else {
+          this.setState({curPlayer: this.state.player1, prevPlayer: this.state.player2})
+        }
+        this.setState({didRoll: false})
       } else {
-        this.setState({curPlayer: this.state.player1,prevPlayer: this.state.player2})
+        this.displayRollFirstMsg()
       }
     }
      doubleCase=(cur)=> {
@@ -98,7 +105,9 @@ class DisplayAll extends React.Component {
           isWin: false,
       }, ()=>{this.invokeHold()})
     }
-    
+    displayRollFirstMsg(){
+      //
+    }
   ///////////////////////////////////////////////////////////////////
   render() {
     if (!this.state.isLost && !this.state.isWin) { 
