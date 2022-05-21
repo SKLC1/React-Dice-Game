@@ -59,7 +59,7 @@ class DisplayAll extends React.Component {
         if (this.state.curPlayer === this.state.player1) {
           this.setState({curPlayer: this.state.player2, 
             prevPlayer: this.state.player1, 
-            totalScoreP1: this.state.totalScoreP1 + this.state.curPlayer.score})
+            totalScoreP1: this.state.totalScoreP1 + this.state.curPlayer.score,})
         } else {
           this.setState({curPlayer: this.state.player1,
              prevPlayer: this.state.player2,
