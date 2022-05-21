@@ -65,6 +65,7 @@ class DisplayAll extends React.Component {
              prevPlayer: this.state.player2,
              totalScoreP2: this.state.totalScoreP2 + this.state.player2.score,}) // hard coded because weird behavior error.
         }
+        // instructions were unclear, this is coded according to rules which means temporary score does not return to 0 once hold was clicked
         this.setState({didRoll: false})
       } else {
         this.setRollMsg()
