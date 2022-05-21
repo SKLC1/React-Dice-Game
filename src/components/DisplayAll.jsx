@@ -17,8 +17,8 @@ class DisplayAll extends React.Component {
         name: 'player2',
         score: 0,
       },
-      curPlayer: null, // find a way to give curPlayer default
-      prevPlayer: null, // find a way to give curPlayer default
+      curPlayer: null, 
+      prevPlayer: null, 
       diceOne: 1,
       diceTwo: 1,
       isLost: false, // false
@@ -103,10 +103,15 @@ class DisplayAll extends React.Component {
           diceTwo: 1,
           isLost: false,
           isWin: false,
+          didRoll: true,
       }, ()=>{this.invokeHold()})
     }
     displayRollFirstMsg(){
-      //
+        return(
+          <div>
+          <h1 className="rollFirst-msg">You must roll at least Once</h1>
+          </div>
+        )
     }
   ///////////////////////////////////////////////////////////////////
   render() {
@@ -119,6 +124,9 @@ class DisplayAll extends React.Component {
            <Hold data={this.state} holdFunc={this.invokeHold}/>
            <ResetBtn data={this.state} resetFunc={this.resetGame}/>
          </div>
+           <div className="rollFirst-cont">
+             {!this.state.didRoll?this.displayRollFirstMsg():null}
+           </div>
          <div>{this.state.isDouble && 'double'}</div>
         </div>
       )

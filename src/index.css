@@ -50,6 +50,12 @@ code {
 .highlightCur{
   border: 5px solid blue;
 }
+.rollFirst-msg{
+  font-size: 1rem;
+}
+.rollFirst-cont{
+  text-align: center;
+}
 
 /* dice */
 .cube{
