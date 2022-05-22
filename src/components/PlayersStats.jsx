@@ -2,9 +2,6 @@ import React from "react"
 
 
 class PlayersStats extends React.Component {
-  constructor() {
-    super()
-  }
 
   displayDice(res) {
     const diceArr = [1,2,3,4,5,6]
