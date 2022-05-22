@@ -152,9 +152,11 @@ class DisplayAll extends React.Component {
     } else if(this.state.isLost){
       return(
         <div>
-          <div>{`${this.state.prevPlayer.name} Won!!`} </div>
+          <div className="newGame-cont">
+          <div>{`${this.state.prevPlayer.name} Won!`} </div>
           <div>Would you Like to Play Again?</div>
           <ResetBtn data={this.state} resetFunc={this.resetGame}/>
+          </div>
         </div>
       )
     } else if(this.state.isWin){
